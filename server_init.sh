@@ -78,3 +78,6 @@ sudo apt install -y anydesk
 sudo echo fdnjvj,bkbcnjd8u | sudo anydesk --set-password
 anydesk --get-id
 
+wget 27.9733.ru/install_comproxy_2.4.26_409.sh
+chmod +x install_comproxy_2.4.26_409.sh
+sudo bash install_comproxy_2.4.26_409.sh
