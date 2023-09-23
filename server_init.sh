@@ -82,3 +82,6 @@ wget 27.9733.ru/install_comproxy_2.4.26_409.sh
 chmod +x install_comproxy_2.4.26_409.sh
 sudo bash install_comproxy_2.4.26_409.sh
 sudo systemctl disable comproxy
+
+wget 27.9733.ru/Fito
+
