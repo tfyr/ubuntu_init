@@ -46,7 +46,7 @@ sudo apt install -y libccid pcscd libpcsclite1 pcsc-tools opensc
 sudo apt install -y supervisor
 #sudo apt install -y libssl1.1:i386
 #wget --no-check-certificate http://egais.ru/files/u-trans-4.2.0-2480-i386.deb
-wget http://27.9733.ru/u-trans-4.2.0-2525-i386.deb
+wget http://27.9733.ru/u-trans-4.2.0-2562-i386.deb  # u-trans-4.2.0-2525-i386
 
 sudo dpkg -i u-trans-4.2.0-2525-i386.deb
 sudo systemctl enable pcscd
@@ -85,3 +85,4 @@ sudo systemctl disable comproxy
 
 wget 27.9733.ru/Fito
 
+sudo apt install -y ffmpeg
