@@ -86,3 +86,9 @@ sudo systemctl disable comproxy
 wget 27.9733.ru/Fito
 
 sudo apt install -y ffmpeg
+
+wget http://27.9733.ru/librtpkcs11ecp_2.8.1.0-1_amd64.deb
+sudo dpkg -i librtpkcs11ecp_2.8.1.0-1_amd64.deb
+find  /usr/*(lib|lib64) -name librtpkcs11ecp.so
+pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
+pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text
