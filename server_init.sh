@@ -38,7 +38,7 @@ sudo snap remove firefox
 
 sudo apt install -y curl
 sudo apt install -y socat
-sudo apt install libgtk2.0-0:i386
+sudo apt install -y libgtk2.0-0:i386
 
 sudo dpkg --add-architecture i386
 sudo apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386 pcscd libpcsclite1:i386
@@ -77,6 +77,7 @@ sudo apt update
 sudo apt install -y anydesk
 sudo echo fdnjvj,bkbcnjd8u | sudo anydesk --set-password
 anydesk --get-id
+printf "\n[daemon]\nWaylandEnable=false\n" | sudo tee -a /etc/gdm3/custom.conf
 
 wget 27.9733.ru/install_comproxy_2.4.26_409.sh
 chmod +x install_comproxy_2.4.26_409.sh
