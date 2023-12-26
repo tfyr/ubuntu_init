@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo hostnamectl set-hostname xxxxxx
+
 sudo apt install -y openssh-server
 #on_remote_host$ ssh 192.168.0.104 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 
@@ -48,7 +50,7 @@ sudo apt install -y supervisor
 #wget --no-check-certificate http://egais.ru/files/u-trans-4.2.0-2480-i386.deb
 wget http://27.9733.ru/u-trans-4.2.0-2562-i386.deb  # u-trans-4.2.0-2525-i386
 
-sudo dpkg -i u-trans-4.2.0-2525-i386.deb
+sudo dpkg -i u-trans-4.2.0-2562-i386.deb
 sudo systemctl enable pcscd
 
 sudo apt install -y git
