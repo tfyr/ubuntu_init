@@ -63,6 +63,8 @@ chmod +x download.sh
 pip install -r requirements.txt
 deactivate
 cd ~/
+# crontab -e
+# */5 * * * * ~/kirsa-plugin/download.sh
 
 git clone https://github.com/tfyr/kirsa-ext.git
 
