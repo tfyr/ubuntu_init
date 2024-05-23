@@ -1,3 +1,7 @@
+upstream django_kirsa {
+    server unix:///home/pos/kirsa/kirsa.sock;
+}
+
 server {
     listen 80;
     listen [::]:80;
@@ -78,8 +82,8 @@ server {
 
     location ~ ^/(graphql|admin|bot|photo|explorer|reports|webpush|loginas|aqua|api-token-auth|file|log|torg12_pdf) {
         proxy_set_header Host $host;
-        #proxy_pass http://django_kirsa;
-        proxy_pass http://smelovsk:8090;
+        proxy_pass http://django_kirsa;
+        # proxy_pass http://smelovsk:8090;
         proxy_connect_timeout       180;
         proxy_send_timeout          180;
         proxy_read_timeout          180;

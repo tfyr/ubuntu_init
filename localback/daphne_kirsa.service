@@ -1,0 +1,13 @@
+[Unit]
+Description=Daphne kirsa backend
+After=network.target
+
+[Service]
+User=pos
+Group=pos
+WorkingDirectory=/home/pos/kirsa
+ExecStart=/home/pos/kirsa/env/bin/daphne -u /home/pos/kirsa/kirsa.sock kirsa.asgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
