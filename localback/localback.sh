@@ -1,4 +1,4 @@
-sudo apt install mysql-server nginx redis python3-dev gcc pkg-config libmysqlclient-dev -y
+sudo apt install -y mysql-server nginx redis python3-dev gcc pkg-config libmysqlclient-dev unixodbc 
 
 sudo mkdir /var/www/kirsa-front
 sudo chown pos:pos /var/www/kirsa-front
@@ -62,11 +62,13 @@ python3 -m venv env
 source env/bin/activate
 
 pip3 install mysqlclient
-pip install -r ~/requirements.txt
-pip install ~/telegram-0.1.6.tar.gz ~/promocodes-0.1.1.tar.gz
+pip install -r ~/ubuntu_init/localback/requirements.txt
+pip install ~/ubuntu_init/localback/telegram-0.1.6.tar.gz ~/ubuntu_init/localback/promocodes-0.1.1.tar.gz
 
 python ./manage.py runserver 0.0.0.0:8090
 scp settings_local.py tupak48:~/kirsa/kirsa
 # nano ~/kirsa/kirsa/settings_local.py
-# sudo mv ~/daphne_kirsa.service /etc/systemd/system/
-# sudo systemctl enable daphne_kirsa
+
+sudo cp ~/ubuntu_init/localback/daphne_kirsa.service /etc/systemd/system/
+sudo systemctl enable daphne_kirsa
+sudo systemctl start daphne_kirsa.service
