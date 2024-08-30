@@ -40,7 +40,7 @@ sudo apt autoremove -y firefox && sudo snap remove firefox
 
 #sudo apt install -y libssl1.1:i386
 #wget --no-check-certificate http://egais.ru/files/u-trans-4.2.0-2480-i386.deb
-wget https://egais.ru/files/distr/u-trans-4.2.0-2600-i386.deb  # u-trans-4.2.0-2525-i386
+wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2616-i386.deb
 
 sudo dpkg -i u-trans-4.2.0-2600-i386.deb
 sudo systemctl enable pcscd
