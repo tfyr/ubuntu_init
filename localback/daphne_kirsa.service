@@ -6,7 +6,7 @@ After=network.target
 User=pos
 Group=pos
 WorkingDirectory=/home/pos/kirsa
-ExecStart=/home/pos/kirsa/env/bin/daphne -u /home/pos/kirsa/kirsa.sock kirsa.asgi:application
+ExecStart=/home/pos/kirsa/start_recovery.sh
 Restart=always
 
 [Install]
