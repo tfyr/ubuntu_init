@@ -6,9 +6,9 @@ wget http://ftp.us.debian.org/debian/pool/main/p/pangox-compat/libpangox-1.0-0_0
 sudo wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo add-apt-repository ppa:oibaf/graphics-drivers
+sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt upgrade -y
-sudo dpkg --add-architecture i386
 sudo apt install -y openssh-server curl socat libgtk2.0-0:i386 libc6:i386 libncurses5:i386 libstdc++6:i386 pcscd libpcsclite1:i386 libccid pcscd libpcsclite1 pcsc-tools opensc supervisor python3.10-venv anydesk
 #on_remote_host$ ssh 192.168.0.104 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 
