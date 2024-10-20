@@ -12,7 +12,6 @@ cryptography==42.0.5
 Django==5.0.4
 django-cors-headers==4.3.1
 django-resized==1.0.2
-django-sql-explorer==4.2
 django-webpush==0.3.6
 djangorestframework==3.15.1
 frozenlist==1.4.1
