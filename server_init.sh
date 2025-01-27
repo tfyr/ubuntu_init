@@ -40,15 +40,15 @@ sudo apt autoremove -y firefox && sudo snap remove firefox
 
 #sudo apt install -y libssl1.1:i386
 #wget --no-check-certificate http://egais.ru/files/u-trans-4.2.0-2480-i386.deb
-wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2616-i386.deb
+wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2623-i386.deb
 
-sudo dpkg -i u-trans-4.2.0-2600-i386.deb
+sudo dpkg -i u-trans-4.2.0-2623-i386.deb
 sudo systemctl enable pcscd
 
 python3 -m venv env
 source env/bin/activate
 cd ~/ && git clone https://github.com/tfyr/kirsa-plugin.git
-cd kirsa-plugin/ && chmod +x download.sh && pip install -r requirements.txt && deactivate
+cd kirsa-plugin/ && pip install -r requirements.txt && deactivate
 cd ~/
 # crontab -e
 # */5 * * * * ~/kirsa-plugin/download.sh

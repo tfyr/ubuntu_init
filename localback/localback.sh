@@ -15,7 +15,7 @@ sudo nano /etc/nginx/sites-available/kirsa
 sudo ln -s /etc/nginx/sites-available/kirsa /etc/nginx/sites-enabled/kirsa
 sudo nginx -s reload
 
-sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';flush privileges;"
+sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO `pos`@`localhost`;flush privileges;"
 
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
@@ -37,6 +37,7 @@ replicate-ignore-table  = demands27.kirsa_incomepos
 replicate-ignore-table  = demands27.kirsa_income
 replicate-ignore-table  = demands27.nashcart_cart
 replicate-ignore-table  = demands27.nashcart_item
+replicate-ignore-table  = demands27.kirsa_rashodorderext
 slave-skip-errors = 1062,1032
 
 ###
@@ -69,7 +70,6 @@ mkdir egais_cheques
 python3 -m venv env
 source env/bin/activate
 
-pip3 install mysqlclient
 pip install -r ~/ubuntu_init/localback/requirements.txt
 pip install ~/ubuntu_init/localback/telegram-0.1.6.tar.gz ~/ubuntu_init/localback/promocodes-0.1.1.tar.gz
 
@@ -88,4 +88,5 @@ crontab -e
 
 
 # alter table tran drop foreign key tran_outgo_id_9f687ac6_fk_kirsa_outgo_id;
-# alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_outgopos_id;
+alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_outgopos_id;
+alter table tran drop foreign key tran_outgo_id_9f687ac6_fk_kirsa_outgo_id;
