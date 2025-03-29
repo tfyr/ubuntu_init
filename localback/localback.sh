@@ -4,6 +4,7 @@ sudo mkdir /var/www/kirsa-front
 sudo chown pos:pos /var/www/kirsa-front
 sudo usermod -a -G pos www-data
 
+chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ssh-keygen
 
@@ -32,13 +33,11 @@ replicate-ignore-table  = demands27.lincome
 replicate-ignore-table  = demands27.lincomepos
 replicate-ignore-table  = demands27.lbalance
 replicate-ignore-table  = demands27.kirsa_outgopos
-replicate-ignore-table  = demands27.kirsa_outgo   
-replicate-ignore-table  = demands27.kirsa_incomepos
-replicate-ignore-table  = demands27.kirsa_income
+replicate-ignore-table  = demands27.kirsa_outgo
 replicate-ignore-table  = demands27.nashcart_cart
 replicate-ignore-table  = demands27.nashcart_item
 replicate-ignore-table  = demands27.kirsa_rashodorderext
-slave-skip-errors = 1062,1032
+slave-skip-errors = 1062,1032,1356
 
 ###
 sudo service mysql restart
