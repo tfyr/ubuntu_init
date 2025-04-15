@@ -16,7 +16,7 @@ sudo nano /etc/nginx/sites-available/kirsa
 sudo ln -s /etc/nginx/sites-available/kirsa /etc/nginx/sites-enabled/kirsa
 sudo nginx -s reload
 
-sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO `pos`@`localhost`;flush privileges;"
+sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO 'pos'@'localhost';flush privileges;"
 
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
