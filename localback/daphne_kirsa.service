@@ -6,7 +6,7 @@ After=network.target
 User=pos
 Group=pos
 WorkingDirectory=/home/pos/kirsa
-ExecStart=/home/pos/kirsa/start_recovery.sh
+ExecStart=/home/pos/kirsa/start.sh
 Restart=always
 
 [Install]
