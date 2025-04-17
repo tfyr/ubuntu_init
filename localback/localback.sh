@@ -37,6 +37,7 @@ replicate-ignore-table  = demands27.kirsa_outgo
 replicate-ignore-table  = demands27.nashcart_cart
 replicate-ignore-table  = demands27.nashcart_item
 replicate-ignore-table  = demands27.kirsa_rashodorderext
+replicate-ignore-table  = demands27.tran
 slave-skip-errors = 1062,1032,1356
 
 ###
