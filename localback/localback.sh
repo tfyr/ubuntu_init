@@ -18,27 +18,8 @@ sudo nginx -s reload
 
 sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO 'pos'@'localhost';flush privileges;"
 
-sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
-
-###
-skip-log-bin
-server-id               = 49
-max_binlog_size   = 100M
-relay-log = /var/lib/mysql/mysql-relay-bin
-relay-log-index = /var/lib/mysql/mysql-relay-bin.index
-replicate-do-db = demands27
-replicate-ignore-table  = demands27.loutgo
-replicate-ignore-table  = demands27.loutgopos
-replicate-ignore-table  = demands27.lincome
-replicate-ignore-table  = demands27.lincomepos
-replicate-ignore-table  = demands27.lbalance
-replicate-ignore-table  = demands27.kirsa_outgopos
-replicate-ignore-table  = demands27.kirsa_outgo
-replicate-ignore-table  = demands27.nashcart_cart
-replicate-ignore-table  = demands27.nashcart_item
-replicate-ignore-table  = demands27.kirsa_rashodorderext
-replicate-ignore-table  = demands27.tran
-slave-skip-errors = 1062,1032,1356
+sudo cp ~/ubuntu_init/localback/localback.cnf /etc/mysql/mysql.conf.d/
+sudo nano /etc/mysql/mysql.conf.d/localback.cnf
 
 ###
 sudo service mysql restart
