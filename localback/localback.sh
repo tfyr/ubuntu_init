@@ -34,8 +34,10 @@ head demands27.dmp -n80 | grep "MASTER_LOG_POS"
 # ssh tupak 'echo "000000"| sudo -S mysql demands27 -e "ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_amc_code_3d2375e0_uniq UNIQUE KEY (amc_code);"'
 # -------------------------------
 ALTER TABLE demands27.loutgopos DROP FOREIGN KEY loutgopos_outgo_id_6e59c97d_fk_loutgo_id;
-ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_outgo_id_6e59c97d_fk_loutgo_id FOREIGN KEY (outgo_id) REFERENCES demands27.loutgo(id) ON DELETE CASCADE ON UPDATE RESTRICT;
-CHANGE MASTER TO MASTER_HOST='10.252.1.2', MASTER_USER='replication', MASTER_PASSWORD='Rehima123', MASTER_LOG_FILE = 'binlog.000', MASTER_LOG_POS=, GET_MASTER_PUBLIC_KEY=1;
+ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_outgo_id_6e59c97d_fk_loutgo_id FOREIGN KEY (outgo_id) \
+                                    REFERENCES demands27.loutgo(id) ON DELETE CASCADE ON UPDATE RESTRICT;
+CHANGE MASTER TO MASTER_HOST='10.252.1.2', MASTER_USER='replication', MASTER_PASSWORD='Rehima123', \
+       MASTER_LOG_FILE = 'binlog.000717', MASTER_LOG_POS=188006, GET_MASTER_PUBLIC_KEY=1;
 start slave;
 show slave status \G
 # ------------------------------
