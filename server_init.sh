@@ -2,7 +2,18 @@
 
 sudo hostnamectl set-hostname xxxxxx
 
+git clone https://github.com/tfyr/kirsa-ext.git
+
+wget 27.9733.ru/install_comproxy_2.4.26_409.sh
+chmod +x install_comproxy_2.4.26_409.sh
+sudo bash install_comproxy_2.4.26_409.sh
+sudo systemctl disable comproxy
+
 wget http://ftp.us.debian.org/debian/pool/main/p/pangox-compat/libpangox-1.0-0_0.0.2-5.1_amd64.deb && sudo apt install ./libpangox-1.0-0_0.0.2-5.1_amd64.deb
+wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2623-i386.deb
+wget 27.9733.ru/Fito
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget http://27.9733.ru/librtpkcs11ecp_2.8.1.0-1_amd64.deb
 sudo wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo add-apt-repository ppa:oibaf/graphics-drivers
@@ -34,13 +45,9 @@ sudo usermod -a -G dialout $USER
 gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
 
 sudo apt autoremove -y firefox && sudo snap remove firefox
-
-#sudo apt install -y libssl1.1:i386
-#wget --no-check-certificate http://egais.ru/files/u-trans-4.2.0-2480-i386.deb
-wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2623-i386.deb
 
 sudo dpkg -i u-trans-4.2.0-2623-i386.deb
 sudo systemctl enable pcscd
@@ -53,21 +60,12 @@ cd ~/
 # crontab -e
 # */5 * * * * ~/kirsa-plugin/download.sh
 
-git clone https://github.com/tfyr/kirsa-ext.git
-
 sudo apt install -y xserver-xorg-video-intel mesa-utils
 sudo apt full-upgrade
 
 sudo echo fdnjvj,bkbcnjd8u | sudo anydesk --set-password
 anydesk --get-id
 printf "\n[daemon]\nWaylandEnable=false\n" | sudo tee -a /etc/gdm3/custom.conf
-
-wget 27.9733.ru/install_comproxy_2.4.26_409.sh
-chmod +x install_comproxy_2.4.26_409.sh
-sudo bash install_comproxy_2.4.26_409.sh
-sudo systemctl disable comproxy
-
-wget 27.9733.ru/Fito
 
 mkdir ~/ArcusIngenicoDriver
 mkdir ~/ArcusIngenicoDriver/Linux64
