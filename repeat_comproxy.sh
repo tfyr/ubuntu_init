@@ -1,7 +1,7 @@
 #!/bin/bash
 
 x=1
-while [ $x -lt 100 ]
+while [ $x -lt 500 ]
 do
   echo "Значение счетчика: $x"
   sudo ./comproxy_check_ports.sh

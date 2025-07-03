@@ -9,8 +9,8 @@ sudo add-apt-repository ppa:oibaf/graphics-drivers
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y openssh-server curl socat libgtk2.0-0:i386 libc6:i386 libncurses5:i386 libstdc++6:i386 pcscd libpcsclite1:i386 libccid pcscd libpcsclite1 pcsc-tools opensc supervisor python3.10-venv anydesk
-#on_remote_host$ ssh 192.168.0.104 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+sudo apt install -y openssh-server curl socat libgtk2.0-0:i386 libc6:i386 libstdc++6:i386 pcscd libpcsclite1:i386 libccid \
+                    pcscd libpcsclite1 pcsc-tools opensc supervisor python3.12-venv anydesk
 
 mkdir -p .ssh && printf "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2nNZJpGtQDYQasPS3Om+lBQlvC0QPhnXCxiiC7nbmHnHhhi4gHlmKGI6tzrmz5VHMHZzq12wuCGQrvOHLAsXkBpcQ+vtmKjEaMzxG4KYueqsISMNcpHQIJnP8GSZySGreflfJWHwIusK/MV9BngX0f9eEeei8p3N0vOCOWHY17dYo0bEBwXCX/Tg7ghhcmsiNl6YXeFGE/wV5hT2edhgf+d3mExCBdxPHdy+hpbvzGULgzMW/BeryzFS3grA5lXmqDLBBu+i9f6QXi8s23+UTkafZPdo3B+B1h18TxQFGot4Ck/oUjCjpMUtCbKSyIvhAElGU4fkTOs6nXN4wwVwJ nash@nashlinux
 " >> ~/.ssh/authorized_keys
@@ -69,10 +69,14 @@ sudo systemctl disable comproxy
 
 wget 27.9733.ru/Fito
 
+mkdir ~/ArcusIngenicoDriver
+mkdir ~/ArcusIngenicoDriver/Linux64
+scp -r vds2:~/ArcusIngenicoDriver/Linux64/libarccom21036 pos@xxx:~/ArcusIngenicoDriver/Linux64
+
 sudo apt install -y ffmpeg
 
 wget http://27.9733.ru/librtpkcs11ecp_2.8.1.0-1_amd64.deb
 sudo dpkg -i librtpkcs11ecp_2.8.1.0-1_amd64.deb
 find  /usr/*(lib|lib64) -name librtpkcs11ecp.so
-pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
-pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text
+#pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
+#pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text
