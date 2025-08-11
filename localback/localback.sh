@@ -12,7 +12,6 @@ cat ~/.ssh/id_rsa.pub
 # rsync -rav -e ssh --exclude='categories_tree.json' /home/nash/PycharmProjects/kirsa-front/dist/ sunrise:/var/www/kirsa-front
 
 sudo cp ~/ubuntu_init/localback/kirsa_nginx /etc/nginx/sites-available/kirsa
-sudo nano /etc/nginx/sites-available/kirsa
 sudo ln -s /etc/nginx/sites-available/kirsa /etc/nginx/sites-enabled/kirsa
 sudo nginx -s reload
 
