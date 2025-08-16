@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", ATTRS{idProduct}=="903b", RUN+="/home/pos/ubuntu_init/check_arcus_port.sh"
