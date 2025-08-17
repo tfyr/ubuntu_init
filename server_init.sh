@@ -78,8 +78,10 @@ sudo dpkg -i librtpkcs11ecp_2.8.1.0-1_amd64.deb
 find  /usr/*(lib|lib64) -name librtpkcs11ecp.so
 
 sudo cp ~/ubuntu_init/10-viki.rules /etc/udev/rules.d
+sudo cp ~/ubuntu_init/12-arcus.rules /etc/udev/rules.d
 sudo systemctl restart udev
 sudo udevadm control --reload-rules
+sudo udevadm trigger
 
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text
