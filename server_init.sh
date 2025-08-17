@@ -70,6 +70,7 @@ printf "\n[daemon]\nWaylandEnable=false\n" | sudo tee -a /etc/gdm3/custom.conf
 mkdir ~/ArcusIngenicoDriver
 mkdir ~/ArcusIngenicoDriver/Linux64
 scp -r vds2:~/ArcusIngenicoDriver/Linux64/libarccom21036 pos@xxx:~/ArcusIngenicoDriver/Linux64
+ln -s ~/ArcusIngenicoDriver/Linux64/libarccom21036/cashreg.ini ~/cashreg.ini
 
 sudo apt install -y ffmpeg
 
