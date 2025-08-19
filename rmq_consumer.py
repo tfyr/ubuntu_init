@@ -2,7 +2,7 @@ import json
 import requests
 from pika import BlockingConnection, ConnectionParameters
 
-telegram_bot_url1 = "https://api.telegram.org/bot1228961072:AAHRkM0SwgQdQVilZauHt1BreAaksQI3fpc/"
+telegram_bot_url1 = ""
 
 connection = BlockingConnection(ConnectionParameters('localhost'))
 
