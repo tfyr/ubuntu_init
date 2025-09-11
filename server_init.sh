@@ -44,6 +44,7 @@ sudo usermod -a -G dialout $USER
 # отключение ввода пароля после засыпания
 gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.interface enable-animations false
 
 sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
 
