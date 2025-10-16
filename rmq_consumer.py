@@ -20,9 +20,7 @@ def send_mess(chat, text, newurl=None, reply_markup=None, parse_mode=None):
     return response
 
 def callback_tg(ch, method, properties, body):
-    print(f"Сообщение: {body.decode()}")
-
-    data = json.loads(body)
+    data = json.loads(body.decode(), strict=False)
     send_mess(
         chat=data['chat_id'],
         text=data['msg'],
