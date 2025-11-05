@@ -24,7 +24,7 @@ Host rainbow
     IdentityFile ~/.ssh/id_rsa
 
 Host tupak
-    HostName 10.252.1.9
+    HostName 10.252.1.18
     User pos
     IdentityFile ~/.ssh/id_rsa
 
@@ -43,7 +43,7 @@ Host km180d
     HostName 10.252.1.13
     IdentityFile ~/.ssh/id_rsa
 
-Host oct2
+Host izvekova2
     User pos
     HostName 10.252.1.14
     IdentityFile ~/.ssh/id_rsa
@@ -58,7 +58,7 @@ Host izvekova
     HostName 10.252.1.17
     IdentityFile ~/.ssh/id_rsa
 
-Host km222
+Host oct2
     HostName 10.252.1.41
     User pos
     IdentityFile ~/.ssh/id_rsa
@@ -96,6 +96,7 @@ Host pisareva
 Host askar
     HostName 10.252.1.30
     User pos
+
 Host most
     User pos
     HostName 10.252.1.35
@@ -122,3 +123,24 @@ Host greenlog
     User pos
     HostName 10.252.1.38
     IdentityFile ~/.ssh/id_rsa
+
+Host km222
+    User pos
+    HostName 10.252.1.42
+    IdentityFile ~/.ssh/id_rsa
+
+Host pushkina
+    User pos
+    HostName 10.252.1.52
+    IdentityFile ~/.ssh/id_rsa
+
+Host lenina140
+    User pos
+    HostName 10.252.1.54
+    IdentityFile ~/.ssh/id_rsa
+
+Host km96
+    User pos
+    HostName 10.252.1.55
+    IdentityFile ~/.ssh/id_rsa
+

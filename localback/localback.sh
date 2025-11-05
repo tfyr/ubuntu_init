@@ -43,6 +43,8 @@ show slave status \G
 
 ### django
 git clone git@github.com:tfyr/kirsa.git
+or
+git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa
 
 git checkout master
 cd kirsa
@@ -63,6 +65,12 @@ python ./manage.py runserver 0.0.0.0:8090
 sudo cp ~/ubuntu_init/localback/daphne_kirsa.service /etc/systemd/system/
 sudo systemctl enable daphne_kirsa
 sudo systemctl start daphne_kirsa.service
+
+
+sudo cp ~/ubuntu_init/localback/kirsa_pos.service /etc/systemd/system/
+sudo systemctl enable kirsa_pos
+sudo systemctl start kirsa_pos.service
+
 
 crontab -e
 # */30 8-23 * * * cd ~/kirsa;env/bin/python tools/exchange_outgo.py
