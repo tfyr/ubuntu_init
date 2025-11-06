@@ -52,7 +52,7 @@ sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
 
 sudo apt autoremove -y firefox && sudo snap remove firefox
 
-sudo dpkg -i u-trans-4.2.0-2623-i386.deb
+sudo dpkg -i u-trans-4.2.0-2660-i386.deb
 sudo systemctl enable pcscd
 
 python3 -m venv env
