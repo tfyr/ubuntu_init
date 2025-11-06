@@ -16,6 +16,9 @@ user_databases = {
         },
     },
 }
+viki_port = '/dev/ttyS90'
+viki_baudrate = 115200
+
 "| tee -a settings_local.py
 
 python3 -m venv env
