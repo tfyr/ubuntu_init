@@ -10,7 +10,8 @@ sudo bash install_comproxy_2.4.26_409.sh
 sudo systemctl disable comproxy
 
 wget http://ftp.us.debian.org/debian/pool/main/p/pangox-compat/libpangox-1.0-0_0.0.2-5.1_amd64.deb && sudo apt install ./libpangox-1.0-0_0.0.2-5.1_amd64.deb
-wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2660-i386.deb
+#wget --no-check-certificate https://egais.ru/files/distr/u-trans-4.2.0-2660-i386.deb
+wget http://27.9733.ru/u-trans-4.2.0-2660-i386.deb
 wget 27.9733.ru/Fito
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 wget http://27.9733.ru/librtpkcs11ecp_2.8.1.0-1_amd64.deb
