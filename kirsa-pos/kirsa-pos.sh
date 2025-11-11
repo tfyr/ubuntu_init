@@ -20,8 +20,9 @@ user_databases = {
         },
     },
 }
-viki_port = '/dev/ttyS90'
+viki_port = '/dev/ttyS91'
 viki_baudrate = 115200
+viki_options = 1
 
 "| tee -a settings_local.py
 
