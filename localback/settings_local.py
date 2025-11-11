@@ -20,3 +20,5 @@ user_databases = {
     },
 }
 
+viki_port = '/dev/ttyS90'
+viki_baudrate = 115200

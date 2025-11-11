@@ -4,11 +4,6 @@ sudo mkdir /var/www/kirsa-front
 sudo chown pos:pos /var/www/kirsa-front
 sudo usermod -a -G pos www-data
 
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
-ssh-keygen
-
-cat ~/.ssh/id_rsa.pub
 # rsync -rav -e ssh --exclude='categories_tree.json' /home/nash/PycharmProjects/kirsa-front/dist/ sunrise:/var/www/kirsa-front
 
 sudo cp ~/ubuntu_init/localback/kirsa_nginx /etc/nginx/sites-available/kirsa
@@ -16,6 +11,13 @@ sudo ln -s /etc/nginx/sites-available/kirsa /etc/nginx/sites-enabled/kirsa
 sudo nginx -s reload
 
 sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO 'pos'@'localhost';flush privileges;"
+sudo mysql demands27 -e "
+CREATE TABLE nashcart_cart (
+  id int NOT NULL AUTO_INCREMENT,
+  creation_date datetime(6) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=14400 DEFAULT CHARSET=utf8mb3;"
+
 
 sudo cp ~/ubuntu_init/localback/localback.cnf /etc/mysql/mysql.conf.d/
 sudo nano /etc/mysql/mysql.conf.d/localback.cnf
@@ -24,10 +26,9 @@ sudo nano /etc/mysql/mysql.conf.d/localback.cnf
 sudo service mysql restart
 
 # scp demands27.dmp.gz sunrise:~/
-gunzip demands27.dmp.gz
+gunzip demands27_.dmp.gz
 ### mysql -u demands27 -p demands27 < demands27.dmp
-sudo mysql demands27 < demands27.dmp
-head demands27.dmp -n80 | grep "MASTER_LOG_POS"
+sudo mysql demands27 < demands27_.dmp
 
 # ssh tupak 'echo "000000"| sudo -S mysql demands27 -e "ALTER TABLE demands27.loutgopos ADD column amc_code varchar(150) null;"'
 # ssh tupak 'echo "000000"| sudo -S mysql demands27 -e "ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_amc_code_3d2375e0_uniq UNIQUE KEY (amc_code);"'
@@ -67,7 +68,7 @@ sudo systemctl enable daphne_kirsa
 sudo systemctl start daphne_kirsa.service
 
 
-sudo cp ~/ubuntu_init/localback/kirsa_pos.service /etc/systemd/system/
+sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
 sudo systemctl enable kirsa_pos
 sudo systemctl start kirsa_pos.service
 

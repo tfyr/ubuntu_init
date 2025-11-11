@@ -1,6 +1,9 @@
 [Unit]
 Description=Daphne kirsa backend
 After=network.target
+After=mysql.service
+Wants=mysql.service
+Requires=mysql.service
 
 [Service]
 User=pos

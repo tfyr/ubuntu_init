@@ -1,5 +1,9 @@
-git clone git@github.com:tfyr/kirsa-pos.git
+#git clone git@github.com:tfyr/kirsa-pos.git
+git clone https://__token__@github.com/tfyr/kirsa-pos.git
+git clone https://__token__@github.com/tfyr/kirsa-kkm.git
+
 cd kirsa-pos
+mkdir logs
 printf "localback = True
 user_DEBUG = False
 
