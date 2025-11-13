@@ -72,6 +72,10 @@ sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
 sudo systemctl enable kirsa_pos
 sudo systemctl start kirsa_pos.service
 
+sudo cp ~/ubuntu_init/kirsa_kkmpos.service /etc/systemd/system/
+sudo systemctl enable kirsa_kkmpos
+sudo systemctl start kirsa_kkmpos.service
+
 
 crontab -e
 # */30 8-23 * * * cd ~/kirsa;env/bin/python tools/exchange_outgo.py

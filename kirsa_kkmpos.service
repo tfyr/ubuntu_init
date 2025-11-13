@@ -1,0 +1,13 @@
+[Unit]
+Description=uvicorn kirsa-kkmpos microservice
+After=network.target
+
+[Service]
+User=pos
+Group=pos
+WorkingDirectory=/home/pos/kirsa-kkmpos
+ExecStart=/home/pos/kirsa-kkmpos/start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
