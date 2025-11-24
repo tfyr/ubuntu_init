@@ -28,38 +28,10 @@ viki_options = 1
 
 python3 -m venv env
 source env/bin/activate
-pip3 install uvicorn fastapi[standard] mysqlclient
-
-
-cat /etc/lsb-release
+pip3 install fastapi[standard] mysqlclient
 
 sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
 sudo systemctl enable kirsa_pos
 sudo systemctl start kirsa_pos.service
 
-sudo nano /etc/nginx/sites-available/kirsa
-
-upstream kirsa_pos {
-    server unix:///home/pos/kirsa-pos/kirsa-pos.sock;
-}
-
-    location ~ ^/(kirsa-pos) {
-        proxy_pass http://kirsa_pos;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        # Важные настройки для WebSocket
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-
-        # Таймауты
-        proxy_connect_timeout 60s;
-        proxy_send_timeout 60s;
-        proxy_read_timeout 60s;
-    }
-
-sudo nginx -s reload
 
