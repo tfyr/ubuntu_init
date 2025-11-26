@@ -1,5 +1,5 @@
 localback = True
-local_allowed_hosts = ['XXX',]
+local_allowed_hosts = ['localhost',]
 local_sklad_id = XXX
 current_alco_audit_id = 1
 
@@ -20,5 +20,5 @@ user_databases = {
     },
 }
 
-viki_port = '/dev/ttyS90'
+viki_port = '/dev/ttyS91'
 viki_baudrate = 115200

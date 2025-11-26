@@ -2,7 +2,7 @@
 git clone https://__token__@github.com/tfyr/kirsa-pos.git
 git clone https://__token__@github.com/tfyr/kirsa-kkm.git
 
-cd kirsa-pos
+cd ~/kirsa-pos
 mkdir logs
 printf "localback = True
 user_DEBUG = False
@@ -30,8 +30,5 @@ python3 -m venv env
 source env/bin/activate
 pip3 install fastapi[standard] mysqlclient
 
-sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
-sudo systemctl enable kirsa_pos
-sudo systemctl start kirsa_pos.service
 
 

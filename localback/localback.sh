@@ -36,6 +36,7 @@ sudo mysql demands27 < demands27_.dmp
 ALTER TABLE demands27.loutgopos DROP FOREIGN KEY loutgopos_outgo_id_6e59c97d_fk_loutgo_id;
 ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_outgo_id_6e59c97d_fk_loutgo_id FOREIGN KEY (outgo_id) \
                                     REFERENCES demands27.loutgo(id) ON DELETE CASCADE ON UPDATE RESTRICT;
+alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_outgopos_id;
 CHANGE MASTER TO MASTER_HOST='10.252.1.2', MASTER_USER='replication', MASTER_PASSWORD='Rehima123', \
        MASTER_LOG_FILE = 'binlog.000717', MASTER_LOG_POS=188006, GET_MASTER_PUBLIC_KEY=1;
 start slave;
@@ -46,6 +47,9 @@ show slave status \G
 git clone git@github.com:tfyr/kirsa.git
 or
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa
+git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkm
+git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkmpos
+git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-pos
 
 git checkout master
 cd kirsa
@@ -68,9 +72,53 @@ sudo systemctl enable daphne_kirsa
 sudo systemctl start daphne_kirsa.service
 
 
+#######################
+
+cd ~/kirsa-pos
+mkdir logs
+printf "localback = True
+user_DEBUG = False
+
+user_databases = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'CONN_MAX_AGE': 0,
+        'NAME': 'demands27',
+        'USER': 'demands27',
+        'PASSWORD': 'sXdfsdf33458Wwe1',
+        'HOST': 'localhost', 'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
+    },
+}
+viki_port = '/dev/ttyS91'
+viki_baudrate = 115200
+viki_options = 1
+
+"| tee -a settings_local.py
+
+python3 -m venv env
+source env/bin/activate
+pip3 install fastapi[standard] mysqlclient
+
 sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
 sudo systemctl enable kirsa_pos
 sudo systemctl start kirsa_pos.service
+
+
+########################
+
+cd ~/kirsa-kkmpos
+mkdir logs
+printf "viki_port = '/dev/ttyS91'
+viki_baudrate = 115200
+viki_options = 1
+"| tee -a settings_local.py
+
+python3 -m venv env
+source env/bin/activate
+pip3 install fastapi[standard] pyserial
 
 sudo cp ~/ubuntu_init/kirsa_kkmpos.service /etc/systemd/system/
 sudo systemctl enable kirsa_kkmpos
@@ -80,8 +128,3 @@ sudo systemctl start kirsa_kkmpos.service
 crontab -e
 # */30 8-23 * * * cd ~/kirsa;env/bin/python tools/exchange_outgo.py
 
-
-
-# alter table tran drop foreign key tran_outgo_id_9f687ac6_fk_kirsa_outgo_id;
-alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_outgopos_id;
-alter table tran drop foreign key tran_outgo_id_9f687ac6_fk_kirsa_outgo_id;
