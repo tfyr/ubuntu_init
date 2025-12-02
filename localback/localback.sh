@@ -19,8 +19,8 @@ CREATE TABLE nashcart_cart (
 ) ENGINE=InnoDB AUTO_INCREMENT=14400 DEFAULT CHARSET=utf8mb3;"
 
 
-sudo cp ~/ubuntu_init/localback/localback.cnf /etc/mysql/mysql.conf.d/
-sudo nano /etc/mysql/mysql.conf.d/localback.cnf
+sudo cp ~/ubuntu_init/localback/localback.cnf ~/ubuntu_init/localback/settings_local.cnf /etc/mysql/mysql.conf.d/
+sudo nano /etc/mysql/mysql.conf.d/settings_local.cnf
 
 ###
 sudo service mysql restart
@@ -33,10 +33,13 @@ sudo mysql demands27 < demands27_.dmp
 # ssh tupak 'echo "000000"| sudo -S mysql demands27 -e "ALTER TABLE demands27.loutgopos ADD column amc_code varchar(150) null;"'
 # ssh tupak 'echo "000000"| sudo -S mysql demands27 -e "ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_amc_code_3d2375e0_uniq UNIQUE KEY (amc_code);"'
 # -------------------------------
+sudo mysql demands27 -e "
 ALTER TABLE demands27.loutgopos DROP FOREIGN KEY loutgopos_outgo_id_6e59c97d_fk_loutgo_id;
-ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_outgo_id_6e59c97d_fk_loutgo_id FOREIGN KEY (outgo_id) \
+ALTER TABLE demands27.loutgopos ADD CONSTRAINT loutgopos_outgo_id_6e59c97d_fk_loutgo_id FOREIGN KEY (outgo_id)
                                     REFERENCES demands27.loutgo(id) ON DELETE CASCADE ON UPDATE RESTRICT;
 alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_outgopos_id;
+"
+
 CHANGE MASTER TO MASTER_HOST='10.252.1.2', MASTER_USER='replication', MASTER_PASSWORD='Rehima123', \
        MASTER_LOG_FILE = 'binlog.000717', MASTER_LOG_POS=188006, GET_MASTER_PUBLIC_KEY=1;
 start slave;
@@ -44,15 +47,21 @@ show slave status \G
 # ------------------------------
 
 ### django
-git clone git@github.com:tfyr/kirsa.git
-or
+
+cd ~
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa
+cd ~/kirsa
+git checkout some_moves
+
+cd ~
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkm
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkmpos
-git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-pos
 
-git checkout master
-cd kirsa
+git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-pos
+cd ~/kirsa-pos
+git checkout nokkm
+
+cd ~/kirsa
 mkdir pos_json
 mkdir pos_json/10
 mkdir egais_cheques
@@ -61,6 +70,7 @@ source env/bin/activate
 
 pip install -r ~/ubuntu_init/localback/requirements.txt
 pip install ~/ubuntu_init/localback/telegram-0.1.6.tar.gz ~/ubuntu_init/localback/promocodes-0.1.1.tar.gz
+deactivate
 
 cp ~/ubuntu_init/localback/settings_local.py ~/kirsa/kirsa
 nano ~/kirsa/kirsa/settings_local.py
@@ -101,6 +111,7 @@ viki_options = 1
 python3 -m venv env
 source env/bin/activate
 pip3 install fastapi[standard] mysqlclient
+deactivate
 
 sudo cp ~/ubuntu_init/kirsa_pos.service /etc/systemd/system/
 sudo systemctl enable kirsa_pos
@@ -119,6 +130,7 @@ viki_options = 1
 python3 -m venv env
 source env/bin/activate
 pip3 install fastapi[standard] pyserial
+deactivate
 
 sudo cp ~/ubuntu_init/kirsa_kkmpos.service /etc/systemd/system/
 sudo systemctl enable kirsa_kkmpos
