@@ -21,5 +21,7 @@ slave-skip-errors = 1062,1032,1356
 
 interactive_timeout = 604800
 mysqlx_interactive_timeout = 604801
-mysqlx_wait_timeout = 604802
+
+wait_timeout = 604802
+mysqlx_wait_timeout = 604803
 
