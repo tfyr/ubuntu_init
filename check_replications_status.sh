@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for host in askar askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k elimb rainbow sunrise-new
+for host in askar askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise-new elimb mikh lenina140 pravda59 izvekova2 abzakovo agapovka
 do
     timeout 20s ./check_localback.sh $host
     if [ $? -eq 124 ]

@@ -144,3 +144,42 @@ Host km96
     HostName 10.252.1.55
     IdentityFile ~/.ssh/id_rsa
 
+Host pravda59
+    User pos
+    HostName 10.252.1.56
+    IdentityFile ~/.ssh/id_rsa
+
+Host truda38
+    User pos
+    HostName 10.252.1.57
+    IdentityFile ~/.ssh/id_rsa
+
+Host km178
+    User pos
+    HostName 10.252.1.58
+    IdentityFile ~/.ssh/id_rsa
+
+Host abzakovo
+    User pos
+    HostName 10.252.1.59
+    IdentityFile ~/.ssh/id_rsa
+
+Host km224
+    User pos
+    HostName 10.252.1.60
+    IdentityFile ~/.ssh/id_rsa
+
+Host km101
+    User pos
+    HostName 10.252.1.61
+    IdentityFile ~/.ssh/id_rsa
+
+Host agapovka
+    User pos
+    HostName 10.252.1.62
+    IdentityFile ~/.ssh/id_rsa
+
+Host buran
+    User pos
+    HostName 10.252.1.63
+    IdentityFile ~/.ssh/id_rsa
