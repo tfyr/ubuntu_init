@@ -4,7 +4,7 @@ Description=UDP Port Forward 1111
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/socat UDP4-LISTEN:1111,fork,reuseaddr UDP4:192.168.1.202:1111
+ExecStart=/usr/bin/socat UDP4-LISTEN:1111,fork,reuseaddr UDP4:$1:1111
 Restart=always
 User=nobody
 
