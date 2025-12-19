@@ -183,3 +183,8 @@ Host buran
     User pos
     HostName 10.252.1.63
     IdentityFile ~/.ssh/id_rsa
+
+Host loco
+    User pos
+    HostName 10.252.1.64
+    IdentityFile ~/.ssh/id_rsa
