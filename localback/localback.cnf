@@ -24,4 +24,5 @@ mysqlx_interactive_timeout = 604801
 
 wait_timeout = 604802
 mysqlx_wait_timeout = 604803
+replica_parallel_workers = 1
 

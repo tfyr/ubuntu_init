@@ -75,8 +75,6 @@ deactivate
 cp ~/ubuntu_init/localback/settings_local.py ~/kirsa/kirsa
 nano ~/kirsa/kirsa/settings_local.py
 
-python ./manage.py runserver 0.0.0.0:8090
-
 sudo cp ~/ubuntu_init/localback/daphne_kirsa.service /etc/systemd/system/
 sudo systemctl enable daphne_kirsa
 sudo systemctl start daphne_kirsa.service
@@ -102,10 +100,6 @@ user_databases = {
         },
     },
 }
-viki_port = '/dev/ttyS91'
-viki_baudrate = 115200
-viki_options = 1
-
 "| tee -a settings_local.py
 
 python3 -m venv env

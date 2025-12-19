@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo visudo
+#pos ALL=(ALL) NOPASSWD: ALL
+
 sudo hostnamectl set-hostname xxxxxx
 
 git clone https://github.com/tfyr/kirsa-ext.git
