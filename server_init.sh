@@ -1,7 +1,8 @@
 #!/bin/bash
 
-sudo visudo
+#sudo visudo
 #pos ALL=(ALL) NOPASSWD: ALL
+printf "pos ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/pos
 
 sudo hostnamectl set-hostname xxxxxx
 
@@ -61,10 +62,11 @@ sudo apt autoremove -y firefox && sudo snap remove firefox
 # sudo dpkg -i u-trans-4.2.0-2660-i386.deb
 sudo systemctl enable pcscd
 
+cd ~/ && git clone https://github.com/tfyr/kirsa-plugin.git
+cd kirsa-plugin
 python3 -m venv env
 source env/bin/activate
-cd ~/ && git clone https://github.com/tfyr/kirsa-plugin.git
-cd kirsa-plugin/ && pip install -r requirements.txt && deactivate
+pip install -r requirements.txt && deactivate
 cd ~/
 # crontab -e
 # */5 * * * * ~/kirsa-plugin/download.sh

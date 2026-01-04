@@ -29,81 +29,19 @@ server {
 
     set $envpkgs /home/pos/kirsa/env/lib/python3.10/site-packages;
 
-    location /static/admin {
-        alias $envpkgs/django/contrib/admin/static/admin;
-    }
-
-   location /static/graphene_django {
-        alias $envpkgs/graphene_django/static/graphene_django;
-    }
-
-    location /static/adminsortable2 {
-         alias $envpkgs/adminsortable2/static/adminsortable2;
-    }
-
-    location /static/django_mptt_admin {
-         alias $envpkgs/django_mptt_admin/static/django_mptt_admin;
-    }
-
-    location /static/webpush {
-         alias $envpkgs/webpush/static/webpush;
-    }
-
-    location /static/explorer {
-         alias $envpkgs/explorer/static/explorer;
-    }
-
-    location /egais_upload {
-        alias /home/pos/kirsa/egais_upload;
-    }
-
-
     location /static {
         alias /home/pos/kirsa/static;
     }
 
     root /var/www/kirsa-front;
 
-    location ~ ^/catalog/.*/.+$ {
-        rewrite ^.*$ /podarok.html;
-    }
-
-    location ~ ^/catalog/.*/?$ {
-        rewrite ^.*$ /catalog.html;
-    }
-
-    location ~ ^/orders/.*/?$ {
-        rewrite ^.*$ /orderno.html;
+    location /pos {
+        try_files $uri $uri/ /pos.html =404;
     }
 
     location / {
         index  index.html;
-        try_files $uri $uri/ =404;
-
-        # kill cache
-        add_header Last-Modified $date_gmt;
-        add_header Cache-Control 'no-store, no-cache';
-        if_modified_since off;
-        expires off;
-        etag off;
-    }
-
-    location ~ ^/kirsa-egais {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        # Важные настройки для WebSocket
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-
-        # Таймауты
-        proxy_connect_timeout 60s;
-        proxy_send_timeout 60s;
-        proxy_read_timeout 60s;
+        try_files $uri $uri/ /index.html =404;
     }
 
     location ~ ^/kirsa-pos {
@@ -113,12 +51,6 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
-        ## Важные настройки для WebSocket
-        #proxy_http_version 1.1;
-        #proxy_set_header Upgrade $http_upgrade;
-        #proxy_set_header Connection "upgrade";
-
-        # Таймауты
         proxy_connect_timeout 60s;
         proxy_send_timeout 60s;
         proxy_read_timeout 60s;
@@ -132,13 +64,13 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    location ~ ^/(graphql|admin|bot|photo|explorer|reports|webpush|loginas|aqua|api-token-auth|file|log|torg12_pdf) {
+    location ~ ^/(graphql|admin|loginas|file|log) {
         proxy_set_header Host $host;
         proxy_pass http://django_kirsa;
-        # proxy_pass http://smelovsk:8090;
-        proxy_connect_timeout       600;
-        proxy_send_timeout          600;
-        proxy_read_timeout          600;
-        send_timeout                600;
+        # proxy_pass http://xxx:8090;
+        proxy_connect_timeout       300;
+        proxy_send_timeout          300;
+        proxy_read_timeout          300;
+        send_timeout                300;
     }
 }
