@@ -18,7 +18,6 @@ wget http://27.9733.ru/u-trans-4.2.0-2660-i386.deb
 wget http://27.9733.ru/Fito
 wget http://27.9733.ru/ShtrihPrintSetupRus.exe 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-wget http://27.9733.ru/librtpkcs11ecp_2.8.1.0-1_amd64.deb
 sudo wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
 sudo add-apt-repository ppa:oibaf/graphics-drivers
