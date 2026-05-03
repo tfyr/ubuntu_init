@@ -1,12 +1,12 @@
 #!/bin/bash
 
-for host in askar askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise-new elimb mikh lenina140 pravda59 izvekova2 abzakovo agapovka
+for host in abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise-new mikh lenina140 pravda59 izvekova2 km224 agapovka buran locomotiv smelovsk km96 elimb pushkina km178 km101 truda38
 do
     timeout 20s ./check_localback.sh $host
     if [ $? -eq 124 ]
     then
         printf "%-15s " $host
-        echo -e '\033[93mconnection attemps for 10s failed\033[39m'
+        echo -e '\033[93mconnection attemps for 20s failed\033[39m'
         /home/nash/ubuntu_init/venv/bin/python3 /home/nash/ubuntu_init/tg_to_test_channel.py $host 'нет соединения'
     fi
 done
