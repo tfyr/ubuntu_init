@@ -9,4 +9,11 @@ do
         echo -e '\033[93mconnection attemps for 20s failed\033[39m'
         /home/nash/ubuntu_init/venv/bin/python3 /home/nash/ubuntu_init/tg_to_test_channel.py $host 'нет соединения'
     fi
+    not_confirmed_status=$(ssh $host 'mysql demands27 --skip-column-names -e "select count(*) from loutgo where state=1;"')
+    if [ $not_confirmed_status -eq 0 ]
+    then
+        echo "ok " $host
+    else
+        echo "errors" $host
+    fi
 done
