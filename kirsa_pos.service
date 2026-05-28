@@ -9,8 +9,10 @@ Requires=mysql.service
 User=pos
 Group=pos
 WorkingDirectory=/home/pos/kirsa-pos
-ExecStart=/home/pos/kirsa-pos/start.sh
+Environment="PYTHONPATH=/home/pos/kirsa:/home/pos/kirsa-plugin:/home/pos/kirsa-kkm"
+ExecStart=/home/pos/kirsa-pos/env/bin/python3 main.py --uds=kirsa-pos.sock
 Restart=always
+
 
 [Install]
 WantedBy=multi-user.target
