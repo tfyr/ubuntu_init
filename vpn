@@ -71,7 +71,7 @@ Host izvekova
     IdentityFile ~/.ssh/id_ed25519
 
 Host oct2
-    HostName 10.252.1.41
+    HostName 10.252.1.57
     User pos
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
@@ -175,12 +175,6 @@ Host km96
 Host pravda59
     User pos
     HostName 10.252.1.76
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
-
-Host truda38
-    User pos
-    HostName 10.252.1.57
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
