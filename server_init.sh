@@ -94,5 +94,11 @@ sudo systemctl restart udev
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
+cd ~
+cp -r .config/google-chrome ~/chrome-cdp
+cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/
+sed -i 's|/usr/bin/google-chrome-stable|/usr/bin/google-chrome-stable --remote-debugging-port=9222 --user-data-dir=/home/pos/chrome-cdp|g' ~/.local/share/applications/google-chrome.desktop
+update-desktop-database ~/.local/share/applications/
+
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text

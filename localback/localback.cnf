@@ -17,6 +17,8 @@ replicate-ignore-table  = demands27.nashcart_item
 replicate-ignore-table  = demands27.kirsa_rashodorderext
 replicate-ignore-table  = demands27.tran
 replicate-ignore-table  = demands27.payment
+replicate-ignore-table  = demands27.kirsa_fskiz
+replicate-ignore-table  = demands27.kirsa_edodocument
 slave-skip-errors = 1062,1032,1356
 
 interactive_timeout = 604800
