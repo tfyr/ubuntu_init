@@ -96,7 +96,7 @@ Host lenina93k
 
 Host smelovsk
     User pos
-    HostName 10.252.1.25
+    HostName 10.252.1.66
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
