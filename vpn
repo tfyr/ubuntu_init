@@ -174,7 +174,7 @@ Host km96
 
 Host pravda59
     User pos
-    HostName 10.252.1.56
+    HostName 10.252.1.76
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
