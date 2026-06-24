@@ -219,3 +219,8 @@ Host loco
     HostName 10.252.1.64
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
+
+Host vokzalnaya124
+    User pos
+    HostName 10.252.1.30
+    IdentityFile ~/.ssh/id_rsa
