@@ -17,7 +17,7 @@ Host elimb
     IdentityFile ~/.ssh/id_ed25519
 
 Host sunrise
-    HostName 10.252.1.7
+    HostName 10.252.1.26
     User pos
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
@@ -36,12 +36,6 @@ Host tupak
 
 Host taysara
     HostName 10.252.1.10
-    User pos
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
-
-Host kuzh
-    HostName 10.252.1.11
     User pos
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
@@ -76,12 +70,6 @@ Host oct2
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
-Host km180k
-    User pos
-    HostName 10.252.1.20
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
-
 Host askar6
     HostName 10.252.1.22
     User pos
@@ -97,12 +85,6 @@ Host lenina93k
 Host smelovsk
     User pos
     HostName 10.252.1.66
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
-
-Host sunrise-new
-    HostName 10.252.1.26
-    User pos
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
