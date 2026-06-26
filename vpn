@@ -94,12 +94,6 @@ Host pisareva
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
-Host askar
-    HostName 10.252.1.30
-    User pos
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
-
 Host most
     User pos
     HostName 10.252.1.35
