@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for host in abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise-new mikh lenina140 pravda59 izvekova2 km224 agapovka buran locomotiv smelovsk km96 elimb pushkina km178 km101 truda38
+for host in abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise mikh lenina140 pravda59 izvekova2 km224 agapovka buran loco smelovsk km96 elimb pushkina km178 km101 vokzalnaya124
 do
     timeout 20s ./check_localback.sh $host
     if [ $? -eq 124 ]
@@ -14,6 +14,6 @@ do
     then
         echo "ok " $host
     else
-        echo "errors" $host
+        echo -e '\033[93merrors\033[39m' $host
     fi
 done
