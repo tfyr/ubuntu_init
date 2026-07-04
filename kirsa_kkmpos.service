@@ -1,12 +1,17 @@
 [Unit]
 Description=uvicorn kirsa-kkmpos microservice
 After=network.target
+After=mysql.service
+Wants=mysql.service
+Requires=mysql.service
 
 [Service]
 User=pos
 Group=pos
-WorkingDirectory=/home/pos/kirsa-kkmpos
-ExecStart=/home/pos/kirsa-kkmpos/start.sh
+WorkingDirectory=/home/pos/kirsa-pos
+Environment="PYTHONPATH=/home/pos/kirsa:/home/pos/kirsa-plugin:/home/pos/kirsa-kkm"
+Environment="DJANGO_SETTINGS_MODULE=settings"
+ExecStart=/home/pos/kirsa-pos/env/bin/python3 main.py --uds=kirsa-pos.sock
 Restart=always
 
 [Install]
