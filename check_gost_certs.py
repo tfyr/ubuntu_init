@@ -2,6 +2,13 @@ import sys
 import requests
 from datetime import datetime, timezone, timedelta
 
+# ANSI escape-коды
+RED    = "\033[91m"
+YELLOW = "\033[93m"
+RESET  = "\033[0m"
+GREEN  = "\033[92m"
+
+CHECK_MARK = "\u2705"   # ✅
 
 def parse_custom_datetime(s: str) -> datetime:
     """
@@ -37,15 +44,15 @@ def main():
         resp.raise_for_status()
         data = resp.json()
     except requests.RequestException as e:
-        print(f"Ошибка запроса к {url}: {e}", file=sys.stderr)
+        print(f"{YELLOW}Ошибка запроса к {url}: {e}{RESET}", file=sys.stderr)
         sys.exit(1)
     except ValueError as e:
-        print(f"Ошибка парсинга JSON: {e}", file=sys.stderr)
+        print(f"{YELLOW}Ошибка парсинга JSON: {e}{RESET}", file=sys.stderr)
         sys.exit(1)
 
     to_str = data.get("to")
     if not to_str:
-        print("Поле 'to' отсутствует в ответе", file=sys.stderr)
+        print("{YELLOW}Поле 'to' отсутствует в ответе{RESET}", file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -59,10 +66,11 @@ def main():
     expire_local = expire_dt.astimezone()
     delta = expire_local - now
 
-    if delta < timedelta(days=100):
-        print(f"{ip} Сертификат истекает (осталось {delta.days} дн. {delta.seconds // 3600} ч.)")
+    if delta < timedelta(days=10):
+        print(f"{RED}{ip} Сертификат истекает (осталось {delta.days} дн. {delta.seconds // 3600} ч.){RESET}")
+        sys.exit(99)
     else:
-        print(f"{ip} Сертификат действителен ещё {delta.days} дн.")
+        print(f"{GREEN}{CHECK_MARK}{RESET} {ip} Сертификат действителен ещё {delta.days} дн.")
 
 
 if __name__ == "__main__":
