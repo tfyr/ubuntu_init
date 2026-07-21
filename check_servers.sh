@@ -28,9 +28,9 @@ done
 
 for host in $HOSTS_UTM
 do
-    python3 ~/ubuntu_init/check_gost_certs.py $host
-    if [ $? -eq 99 ]
-    then
-        /home/nash/ubuntu_init/venv/bin/python3 /home/nash/ubuntu_init/tg_to_test_channel.py $host 'истекает сертификат ГОСТ'
-    fi
+    /home/nash/ubuntu_init/venv/bin/python3 ~/ubuntu_init/check_gost_certs.py $host
+    #if [ $? -eq 99 ]
+    #then
+    #    /home/nash/ubuntu_init/venv/bin/python3 /home/nash/ubuntu_init/tg_to_test_channel.py $host 'истекает сертификат ГОСТ'
+    #fi
 done

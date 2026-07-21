@@ -1,6 +1,7 @@
 import sys
 import requests
 from datetime import datetime, timezone, timedelta
+from tg_to_test_channel import tg_rabbit, test_chat_id, exchange_errors_chat_id
 
 # ANSI escape-коды
 RED    = "\033[91m"
@@ -67,10 +68,13 @@ def main():
     delta = expire_local - now
 
     if delta < timedelta(days=10):
-        print(f"{RED}{ip} Сертификат истекает (осталось {delta.days} дн. {delta.seconds // 3600} ч.){RESET}")
+        print(f"{RED}{ip} Сертификат ГОСТ истекает (осталось {delta.days} дн. {delta.seconds // 3600} ч.){RESET}")
+        tg_rabbit( # test_chat_id, 
+                  exchange_errors_chat_id,
+                  f"{ip}, Сертификат ГОСТ истекает, осталось {delta.days} дн. {delta.seconds // 3600} ч.")
         sys.exit(99)
     else:
-        print(f"{GREEN}{CHECK_MARK}{RESET} {ip} Сертификат действителен ещё {delta.days} дн.")
+        print(f"{GREEN}{CHECK_MARK}{RESET} {ip} Сертификат ГОСТ действителен ещё {delta.days} дн.")
 
 
 if __name__ == "__main__":

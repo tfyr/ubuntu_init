@@ -19,7 +19,7 @@ def tg_rabbit(chat_id, text):
                           body=f'{{"chat_id": {chat_id}, "msg": "{text}" }}')
 
 
-tg_rabbit(
-          # test_chat_id,
-          exchange_errors_chat_id,  
-          f"{sys.argv[1]}: {sys.argv[2]}")
+if __name__ == "__main__":
+    tg_rabbit( # test_chat_id,
+              exchange_errors_chat_id,
+              f"{sys.argv[1]}: {sys.argv[2]}")

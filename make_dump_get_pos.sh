@@ -1,0 +1,66 @@
+#!/bin/bash
+sudo mysql demands27 -e 'FLUSH TABLES WITH READ LOCK;'
+sudo mysql demands27 -e 'show binary log status\G'
+sudo mysqldump -f demands27 --ignore-table=demands27.kirsa_outgopos \
+                            --ignore-table=demands27.kirsa_outgo \
+                            --ignore-table=demands27.op \
+                            --ignore-table=demands27.iop \
+                            --ignore-table=demands27.opip \
+                            --ignore-table=demands27.outgo \
+                            --ignore-table=demands27.outgo_sum \
+                            --ignore-table=demands27.nashcart_cart \
+                            --ignore-table=demands27.nashcart_item \
+                            --ignore-table=demands27.kirsa_rashodorderext \
+                            --ignore-table=demands27.tran \
+                            --ignore-table=demands27.kirsa_audit \
+                            --ignore-table=demands27.kirsa_audit_goods \
+                            --ignore-table=demands27.kirsa_audititem \
+                            --ignore-table=demands27.kirsa_auditadjustment \
+                            --ignore-table=demands27.kirsa_auditfact \
+                            --ignore-table=demands27.demand \
+                            --ignore-table=demands27.demand_line \
+                            --ignore-table=demands27.enter \
+                            --ignore-table=demands27.audit_alco_amc \
+                            --ignore-table=demands27.log_data \
+                            --ignore-table=demands27.log_connectionuser \
+                            --ignore-table=demands27.debts \
+                            --ignore-table=demands27.kirsa_egaisdocument \
+                            --ignore-table=demands27.kirsa_egaisaction \
+                            --ignore-table=demands27.items \
+                            --ignore-table=demands27.balance \
+                            --ignore-table=demands27.kirsa_uploadtosbis \
+                            --ignore-table=demands27.tickets_status \
+                            --ignore-table=demands27.tickets_subject \
+                            --ignore-table=demands27.tickets_ticket \
+                            --ignore-table=demands27.time_intervals \
+                            --ignore-table=demands27.producer \
+                            --ignore-table=demands27.product_item \
+                            --ignore-table=demands27.promocodes_promo \
+                            --ignore-table=demands27.promocodes_promoused \
+                            --ignore-table=demands27.props \
+                            --ignore-table=demands27.proptype \
+                            --ignore-table=demands27.replacement \
+                            --ignore-table=demands27.route \
+                            --ignore-table=demands27.route_to_agent \
+                            --ignore-table=demands27.routes \
+                            --ignore-table=demands27.saldo \
+                            --ignore-table=demands27.scripts \
+                            --ignore-table=demands27.explorer_query \
+                            --ignore-table=demands27.explorer_queryfavorite \
+                            --ignore-table=demands27.explorer_querylog \
+                            --ignore-table=demands27.dltu \
+                            --ignore-table=demands27.etran \
+                            --ignore-table=demands27.view_balance \
+                            --ignore-table=demands27.vbtu \
+                            --ignore-table=demands27.kirsa_ignorenovelty \
+                            --ignore-table=demands27.kirsa_import \
+                            --ignore-table=demands27.fuelcard_auto \
+                            --ignore-table=demands27.fuelcard_card \
+                            --ignore-table=demands27.fuelcard_cardhold \
+                            --ignore-table=demands27.fuelcard_check \
+                            --ignore-table=demands27.fuelcard_fueltype \
+                            --ignore-table=demands27.kirsa_recognizetask \
+                            --ignore-table=demands27.kirsa_recognizetaskimage \
+                            --ignore-table=demands27.actions \
+                          | gzip > ~/demands27_.dmp.gz
+sudo mysql demands27 -e 'UNLOCK TABLES;'
