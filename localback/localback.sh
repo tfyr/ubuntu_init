@@ -42,6 +42,9 @@ alter table kirsa_amc drop foreign key kirsa_amc_outgopos_id_46581fef_fk_kirsa_o
 
 CHANGE MASTER TO MASTER_HOST='10.252.1.2', MASTER_USER='replication', MASTER_PASSWORD='Rehima123', \
        MASTER_LOG_FILE = 'binlog.000717', MASTER_LOG_POS=188006, GET_MASTER_PUBLIC_KEY=1;
+
+CHANGE MASTER TO MASTER_HOST='10.252.1.77', MASTER_USER='replication', MASTER_PASSWORD='Hhdnutr76gcnm3%2xjl1ss9(8zZx', MASTER_LOG_FILE = 'binlog.000060', MASTER_LOG_POS=75339703, GET_MASTER_PUBLIC_KEY=1;
+
 start slave;
 show slave status \G
 # ------------------------------
