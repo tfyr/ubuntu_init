@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOSTS='abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise mikh lenina140 pravda59 izvekova2 km224 agapovka buran loco smelovsk km96 elimb pushkina km178 km101 vokzalnaya124'
+HOSTS='abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d lenina93k rainbow sunrise mikh lenina140 pravda59 izvekova2 km224 agapovka buran loco smelovsk km96 elimb pushkina km178 km101 vokzalnaya124 50let42'
 
 HOSTS_UTM='abzakovo askar6 tupak km222 cement pisareva greenlog lenina135 galiullina most oct2 km180d lenina93d           rainbow sunrise mikh lenina140 pravda59 izvekova2 km224 agapovka buran loco smelovsk km96 elimb pushkina km178 km101 vokzalnaya124'
 
