@@ -206,3 +206,8 @@ Host mira
     HostName 10.252.1.20
     IdentityFile ~/.ssh/id_rsa
 
+Host 50let42
+    User pos
+    HostName 10.252.1.78
+    IdentityFile ~/.ssh/id_rsa
+

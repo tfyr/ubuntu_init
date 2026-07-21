@@ -64,7 +64,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    location ~ ^/(graphql|admin|loginas|file|log) {
+    location ~ ^/(auth-graphql|pos-graphql|graphql|admin|loginas|file|log) {
         proxy_set_header Host $host;
         proxy_pass http://django_kirsa;
         # proxy_pass http://xxx:8090;
