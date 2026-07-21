@@ -1,4 +1,5 @@
-sudo apt install -y mysql-server nginx redis python3-dev gcc pkg-config libmysqlclient-dev unixodbc 
+sudo apt install -y mysql-server nginx python3-dev gcc pkg-config libmysqlclient-dev unixodbc 
+### redis removed 22.07.2026
 
 sudo mkdir /var/www/kirsa-front
 sudo chown pos:pos /var/www/kirsa-front
