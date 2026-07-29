@@ -1,0 +1,243 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides:          comproxy
+# Required-Start:    lightdm $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example initscript
+# Description:       This file should be used to construct scripts to be
+#                    placed in /etc/init.d.
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+WORKDIR=/opt/comproxy
+DESC="ComProxy services"
+NAME=comproxy
+DAEMON="$WORKDIR/jre/bin/java"
+DAEMON_ARGS="-Xms16m -Xmx16m -XX:PermSize=16M -XX:MaxPermSize=16M -jar $WORKDIR/ComProxy.jar $WORKDIR"
+DAEMON_AGENT_GUI_ARGS="-Xms16m -Xmx16m -XX:PermSize=16M -XX:MaxPermSize=16M -jar $WORKDIR/ComProxyAgent.jar $WORKDIR"
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+VIRTUAL_PORT1=`sed -n 's/port1=\(.*$\)/\1/p' $WORKDIR/socat.ini`
+VIRTUAL_PORT2=`sed -n 's/port2=\(.*$\)/\1/p' $WORKDIR/socat.ini`
+VIRTUAL_PORT3=`sed -n 's/port3=\(.*$\)/\1/p' $WORKDIR/socat.ini`
+VIRTUAL_PORT4=`sed -n 's/port4=\(.*$\)/\1/p' $WORKDIR/socat.ini`
+[ -z $VIRTUAL_PORT1 ] && VIRTUAL_PORT1=ttyS90
+[ -z $VIRTUAL_PORT2 ] && VIRTUAL_PORT2=ttyS91
+[ -z $VIRTUAL_PORT3 ] && VIRTUAL_PORT3=ttyS100
+[ -z $VIRTUAL_PORT4 ] && VIRTUAL_PORT4=ttyS101
+
+# Exit if the package is not installed
+if [ ! -x "$DAEMON" ]; then
+	echo "ERROR: $DAEMON not found"
+	exit 0
+fi
+
+# Read configuration variable file if it is present
+#[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+# Load the VERBOSE setting and other rcS variables
+#. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
+# and status_of_proc is working.
+#. /lib/lsb/init-functions
+
+VERBOSE="yes"
+
+#
+# Function that starts the daemon/service
+#
+is_running() {
+    pgrep -f "$1" > /dev/null 2>&1
+    return $?
+}
+
+do_start()
+{
+	# Return
+	#   0 if daemon has been started
+	#   1 if daemon was already running
+	#   2 if daemon could not be started
+	DISPLAY=:0
+	export DISPLAY=:0
+	is_running "socat"
+	[ "$?" -eq 1 ] && /usr/bin/socat -d -d pty,raw,mode=666,echo=0,LINK=/dev/$VIRTUAL_PORT1 pty,raw,echo=0,mode=666,LINK=/dev/$VIRTUAL_PORT2 > $WORKDIR/logs/socat.log 2>&1 &
+	/usr/bin/socat -d -d pty,raw,mode=666,echo=0,LINK=/dev/$VIRTUAL_PORT3 pty,raw,echo=0,mode=666,LINK=/dev/$VIRTUAL_PORT4 > $WORKDIR/logs/socat.log 2>&1 &
+
+	# Wait up to 10 seconds for socat to create device symlinks
+	for i in $(seq 1 10); do
+	    if [ -e /dev/$VIRTUAL_PORT1 -a -e /dev/$VIRTUAL_PORT2 -a -e /dev/$VIRTUAL_PORT3 -a -e /dev/$VIRTUAL_PORT4 ]; then
+	        break
+	    fi
+	    sleep 1
+	done
+
+	if [ ! -e /dev/$VIRTUAL_PORT1 -o ! -e /dev/$VIRTUAL_PORT2 -o ! -e /dev/$VIRTUAL_PORT3 -o ! -e /dev/$VIRTUAL_PORT4 ]; then
+	    echo "Socat failed to start...exiting"
+	    exit 1
+	fi
+
+	is_running "ComProxyAgent.jar"
+	[ "$?" -eq 1 ] && $DAEMON $DAEMON_AGENT_GUI_ARGS > /dev/null 2>&1 &
+	sleep 1
+
+	is_running "ComProxy.jar"
+	[ "$?" -eq 0 ] && return 1
+	$DAEMON $DAEMON_ARGS > /dev/null 2>&1 &
+	sleep 1
+	is_running "ComProxy.jar"
+	[ "$?" -eq 1 ] && return 2 || return 0
+
+}
+
+#
+# Function that stops the daemon/service
+#
+do_stop()
+{
+	# Return
+	#   0 if daemon has been stopped
+	#   1 if daemon was already stopped
+	#   2 if daemon could not be stopped
+	#   other if a failure occurred
+	for pid in `pgrep -f "ComProxy.jar"`; do
+        sudo kill -s TERM $pid
+    done
+
+	for pid in `pgrep -f "socat"`; do
+	    kill -s TERM $pid
+	done
+
+	sleep 2
+
+	pgrep -f "ComProxy.jar" > /dev/null 2>&1
+	if [ "$?" -eq 0 ]; then
+        #echo "Comproxy is still running. Sending KILL signal..."
+        for pid in `pgrep -f "ComProxy.jar"`; do
+            sudo kill -s KILL $pid
+        done
+    fi
+
+	pgrep -f "socat" > /dev/null 2>&1
+	if [ "$?" -eq 0 ]; then
+        for pid in `pgrep -f "socat"`; do
+            kill -s KILL $pid
+        done
+        rm -f /dev/$VIRTUAL_PORT1
+        rm -f /dev/$VIRTUAL_PORT2
+        rm -f /dev/$VIRTUAL_PORT3
+        rm -f /dev/$VIRTUAL_PORT4
+    fi
+    return 0
+}
+
+
+do_stop_srv()
+{
+
+	for pid in `pgrep -f "ComProxy.jar"`; do
+        sudo kill -s TERM $pid
+    done
+
+	sleep 2
+
+	pgrep -f "ComProxy.jar" > /dev/null 2>&1
+	if [ "$?" -eq 0 ]; then
+        #echo "Comproxy is still running. Sending KILL signal..."
+        for pid in `pgrep -f "ComProxy.jar"`; do
+            sudo kill -s KILL $pid
+        done
+    fi
+
+    return 0
+}
+
+do_update()
+{
+	DISPLAY=:0
+	export DISPLAY=:0
+
+	declare -A usrs
+	usrs=()
+
+	for i in $(users);do
+		[[ $i = root ]] && continue # skip root
+		usrs[$i]=1
+	done # unique names
+
+	for u in "${!usrs[@]}"; do
+		su $u -c "echo test $u >> /tmp/xhost.log"
+		su $u -c "DISPLAY=:0 >> /tmp/xhost.log"
+		su $u -c "export DISPLAY=:0 2> /dev/null"
+		su $u -c "xhost + >> /tmp/xhost.log 2>&1"
+	done
+
+	echo "cmd users: $(users)" >> /tmp/xhost.log
+	for u in "${!usrs[@]}"; do
+	    echo "u is: $u" >> /tmp/xhost.log
+	done
+	return 0
+}
+#
+# Function that sends a SIGHUP to the daemon/service
+#
+do_reload() {
+	#
+	# If the daemon can reload its configuration without
+	# restarting (for example, when it is sent a SIGHUP),
+	# then implement that here.
+	#
+	#start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE--name $NAME
+	echo "Not implemented"
+	return 0
+}
+
+case "$1" in
+  start)
+	echo "params " >&2
+     if [[ $2 == "update" ]]; then
+	echo "update" >&2
+	    do_update
+    else
+	echo "start" >&2
+	    do_start
+    fi
+    echo "end" >&2
+	;;
+  stop)
+    if [[ $2 == "srv" ]]; then
+	    do_stop_srv
+    else
+	    do_stop
+    fi
+	;;
+  status)
+	is_running "socat"
+    [ "$?" -eq 0 ] && echo "Socat is running" || echo "Socat is NOT running"
+    is_running "ComProxy.jar"
+    [ "$?" -eq 0 ] && echo "Comproxy is running" || echo "Comproxy is NOT running"
+        ;;
+  #reload|force-reload)
+	#
+	# If do_reload() is not implemented then leave this commented out
+	# and leave 'force-reload' as an alias for 'restart'.
+	#
+	#log_daemon_msg "Reloading $DESC" "$NAME"
+	#do_reload
+	#log_end_msg $?
+	#;;
+  restart|force-reload)
+	do_stop
+	do_start
+	;;
+  *)
+	#echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
+	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+	exit 3
+	;;
+esac
+
+:
