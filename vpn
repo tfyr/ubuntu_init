@@ -185,7 +185,7 @@ Host agapovka
     IdentityFile ~/.ssh/id_ed25519
 
 Host buran
-    User pos
+    User burabka
     HostName 10.252.1.63
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519

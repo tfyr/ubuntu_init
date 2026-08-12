@@ -72,7 +72,7 @@ mkdir egais_cheques
 python3 -m venv env
 source env/bin/activate
 
-pip install -r ~/ubuntu_init/localback/requirements.txt
+pip install -r ~/ubuntu_init/localback/requirements_kirsa_26.txt
 #pip install ~/ubuntu_init/localback/telegram-0.1.6.tar.gz ~/ubuntu_init/localback/promocodes-0.1.1.tar.gz
 deactivate
 
