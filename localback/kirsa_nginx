@@ -65,6 +65,7 @@ server {
     }
 
     location ~ ^/(auth-graphql|pos-graphql|graphql|admin|loginas|file|log) {
+        rewrite ^/pos-graphql$ /graphql break;
         proxy_set_header Host $host;
         proxy_pass http://django_kirsa;
         # proxy_pass http://xxx:8090;
