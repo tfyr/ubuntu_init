@@ -211,3 +211,8 @@ Host 50let42
     HostName 10.252.1.78
     IdentityFile ~/.ssh/id_rsa
 
+Host lenina43
+    User pos
+    HostName 10.252.1.81
+    IdentityFile ~/.ssh/id_rsa
+
