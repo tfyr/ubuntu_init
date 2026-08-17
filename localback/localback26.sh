@@ -135,6 +135,8 @@ sudo systemctl enable kirsa_kkmpos
 sudo systemctl start kirsa_kkmpos.service
 
 
-crontab -e
+#crontab -e
 # */30 8-23 * * * cd ~/kirsa;env/bin/python tools/exchange_outgo.py
-
+sudo cp ~/ubuntu_init/timers/kirsa-exchange.timer ~/ubuntu_init/timers/kirsa-exchange.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now kirsa-exchange.timer

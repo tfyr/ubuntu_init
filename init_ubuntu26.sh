@@ -85,7 +85,7 @@ cd ~/
 # */5 * * * * ~/kirsa-plugin/download.sh
 sudo cp ~/ubuntu_init/timers/kirsa-plugin.timer ~/ubuntu_init/timers/kirsa-plugin.service /etc/systemd/system
 sudo systemctl daemon-reload
-sudo systemctl enable --now backup.timer
+sudo systemctl enable --now kirsa-plugin.timer
 
 sudo apt install -y xserver-xorg-video-intel mesa-utils
 sudo apt full-upgrade
