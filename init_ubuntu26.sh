@@ -79,8 +79,13 @@ python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt && deactivate
 cd ~/
+
+
 # crontab -e
 # */5 * * * * ~/kirsa-plugin/download.sh
+sudo cp ~/ubuntu_init/timers/kirsa-plugin.timer ~/ubuntu_init/timers/kirsa-plugin.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable --now backup.timer
 
 sudo apt install -y xserver-xorg-video-intel mesa-utils
 sudo apt full-upgrade

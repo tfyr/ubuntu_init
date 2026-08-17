@@ -1,0 +1,9 @@
+[Unit]
+Description=Kirsa exchange
+
+[Service]
+User=pos
+Group=pos
+WorkingDirectory=/home/pos/kirsa
+Type=oneshot
+ExecStart=/home/pos/kirsa/env/bin/python /home/pos/kirsa/tools/exchange_outgo.py

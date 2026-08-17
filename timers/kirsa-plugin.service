@@ -1,0 +1,9 @@
+[Unit]
+Description=Kirsa-plugin
+
+[Service]
+User=pos
+Group=pos
+WorkingDirectory=/home/pos/kirsa-plugin
+Type=oneshot
+ExecStart=/home/pos/kirsa-plugin/download.sh
