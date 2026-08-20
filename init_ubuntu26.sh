@@ -119,3 +119,15 @@ update-desktop-database ~/.local/share/applications/
 
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -O
 #pkcs11-tool --module $(find  /usr/*(lib|lib64) -name librtpkcs11ecp.so) -r -y cert --id 34414438464430334338464234414533 | openssl x509 -inform der -text -nameopt utf8,sep_multiline
+
+sudo apt update
+sudo apt install patchelf
+
+or
+
+sudo nano /etc/supervisor/conf.d/transport.conf
+add environment=GLIBC_TUNABLES="glibc.rtld.execstack=2"
+
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl restart
