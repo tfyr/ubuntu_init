@@ -131,3 +131,8 @@ add environment=GLIBC_TUNABLES="glibc.rtld.execstack=2"
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl restart
+
+
+sudo cp ~/ubuntu_init/timers/shtrikh.timer ~/ubuntu_init/timers/shtrikh.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable --now shtrikh.timer
