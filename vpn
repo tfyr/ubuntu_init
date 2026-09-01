@@ -154,7 +154,7 @@ Host pravda59
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
-Host km178
+Host truda31
     User pos
     HostName 10.252.1.58
     IdentityFile ~/.ssh/id_rsa
