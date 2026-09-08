@@ -122,6 +122,8 @@ update-desktop-database ~/.local/share/applications/
 
 sudo apt update
 sudo apt install patchelf
+sudo patchelf --clear-execstack /opt/utm/lib/librtpkcs11ecp.so
+sudo patchelf --clear-execstack /opt/utm/lib/librtpkcs11ecp-replica.so
 
 or
 
