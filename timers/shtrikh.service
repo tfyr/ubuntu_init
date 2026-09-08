@@ -4,7 +4,7 @@ Description=Shtrikh-m weight scale sync PLU
 [Service]
 User=pos
 Group=pos
-WorkingDirectory=/home/pos/shtrikh_m
+WorkingDirectory=/home/pos/shtrih_m
 Type=oneshot
 ExecStart=/home/pos/shtrih_m/env/bin/python3 /home/pos/shtrih_m/new_upload.py >> /home/pos/shtrih_m/upload.log 2>&1
 TimeoutStartSec=20min
