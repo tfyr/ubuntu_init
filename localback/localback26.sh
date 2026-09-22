@@ -11,13 +11,7 @@ sudo cp ~/ubuntu_init/localback/kirsa_nginx /etc/nginx/sites-available/kirsa
 sudo ln -s /etc/nginx/sites-available/kirsa /etc/nginx/sites-enabled/kirsa
 sudo nginx -s reload
 
-sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';CREATE USER 'demands27'@'10.252.1.%' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO 'pos'@'localhost';grant select on demands27.* to `demands27`@`10.252.1.%`;flush privileges;"
-sudo mysql demands27 -e "
-CREATE TABLE nashcart_cart (
-  id int NOT NULL AUTO_INCREMENT,
-  creation_date datetime(6) NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=14400 DEFAULT CHARSET=utf8mb3;"
+sudo mysql -e "CREATE DATABASE demands27 CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER 'demands27'@'localhost' IDENTIFIED BY 'sXdfsdf33458Wwe1';CREATE USER 'demands27'@'10.252.1.%' IDENTIFIED BY 'sXdfsdf33458Wwe1';GRANT ALL PRIVILEGES ON demands27.* TO 'demands27'@'localhost' WITH GRANT OPTION;create user 'nash'@'10.252.1.%';grant select on demands27.* to 'nash'@'10.252.1.%';create user 'pos'@'localhost';GRANT REPLICATION CLIENT ON *.* TO 'pos'@'localhost';grant select on demands27.* to 'demands27'@'10.252.1.%';flush privileges;"
 
 
 sudo cp ~/ubuntu_init/localback/localback.cnf ~/ubuntu_init/localback/settings_local.cnf /etc/mysql/mysql.conf.d/
@@ -55,15 +49,12 @@ show slave status \G
 cd ~
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa
 cd ~/kirsa
-git checkout some_moves
 
 cd ~
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkm
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-kkmpos
 
 git clone https://___get_token_on_obsidian___@github.com/tfyr/kirsa-pos
-cd ~/kirsa-pos
-git checkout nokkm
 
 cd ~/kirsa
 mkdir pos_json
@@ -120,8 +111,9 @@ sudo systemctl start kirsa_pos.service
 
 cd ~/kirsa-kkmpos
 mkdir logs
-printf "viki_port = '/dev/ttyS91'
-viki_baudrate = 115200
+printf "kkt_port = '/dev/ttyS91'
+#kkt_port = '/dev/usbSHTRIKH'
+kkt_baudrate = 115200
 viki_options = 1
 "| tee -a settings_local.py
 
@@ -140,3 +132,9 @@ sudo systemctl start kirsa_kkmpos.service
 sudo cp ~/ubuntu_init/timers/kirsa-exchange.timer ~/ubuntu_init/timers/kirsa-exchange.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now kirsa-exchange.timer
+
+printf 'Unattended-Upgrade::Post-Invoke-Success {
+    "systemctl restart daphne_kirsa.service";
+    "systemctl restart kirsa_pos.service";
+};
+' | sudo tee -a /etc/apt/apt.conf.d/99restart-kirsa
